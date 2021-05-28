@@ -1,5 +1,6 @@
 package fr.sbelhadj.animeandroid.presentation.list
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class AnimeListFragment : Fragment() {
     private val adapter = AnimeAdapter(listOf(), ::onClickedAnime)
 
     private val  layoutManager = LinearLayoutManager(context)
+    public val SHARED_PREFS = "sharedPrefs"
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -43,28 +45,49 @@ class AnimeListFragment : Fragment() {
             layoutManager = this@AnimeListFragment.layoutManager
             adapter = this@AnimeListFragment.adapter
         }
+        callApi()
+        /*val list = getListFromCache()
+        if (list.isEmpty()) {
+            callApi()
+        }else {
+            showList(list)
+        }*/
+
+    }
+
+    /*private fun getListFromCache(): List<Anime> {
+    }*/
+
+    /*private fun saveListIntoCache(animeList: List<Anime>) {
+
+    }*/
 
 
-        Singletons.animeApi.getAnimeList().enqueue(object : Callback<AnimeListResponse>{
+    private fun callApi() {
+        Singletons.animeApi.getAnimeList().enqueue(object : Callback<AnimeListResponse> {
             override fun onFailure(call: Call<AnimeListResponse>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 
             override fun onResponse(
-                    call: Call<AnimeListResponse>,
-                    listResponse: Response<AnimeListResponse>
+                call: Call<AnimeListResponse>,
+                listResponse: Response<AnimeListResponse>
             ) {
-                if(listResponse.isSuccessful && listResponse.body()!= null){
-                    val AnimeResponse = listResponse.body()!!
-                    adapter.updateList(AnimeResponse.top)
+                if (listResponse.isSuccessful && listResponse.body() != null) {
+                    val animeResponse = listResponse.body()!!
+                    //saveListIntoCache()
+                    showList(animeResponse.top)
                 }
             }
 
         })
-
     }
 
-  private fun onClickedAnime(anime: Anime) {
+    private fun showList(animeList: List<Anime>) {
+        adapter.updateList(animeList)
+    }
+
+    private fun onClickedAnime(anime: Anime) {
         val bundle = bundleOf("animeId" to anime.mal_id)
         findNavController().navigate(R.id.action_AnimeListFragment_to_AnimeDetailFragment, bundle)
     }
