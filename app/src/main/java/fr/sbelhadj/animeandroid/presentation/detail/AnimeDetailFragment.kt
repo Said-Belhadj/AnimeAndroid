@@ -35,7 +35,8 @@ class AnimeDetailFragment : Fragment() {
     }
 
     private fun callApi(){
-        Singletons.animeApi.getAnimeDetail("154").enqueue(object : Callback<AnimeDetailResponse>{
+        val mal_id = arguments?.get("animeId").toString()
+        Singletons.animeApi.getAnimeDetail(mal_id).enqueue(object : Callback<AnimeDetailResponse>{
             override fun onFailure(call: Call<AnimeDetailResponse>, t: Throwable) {
             }
 

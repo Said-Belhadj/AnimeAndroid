@@ -10,17 +10,19 @@
         android:name="fr.sbelhadj.animeandroid.presentation.list.AnimeListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_anime_list">
-
+        <argument
+            android:name="animeId"
+            app:argType="integer"
+            android:defaultValue="-1" />
         <action
             android:id="@+id/action_AnimeListFragment_to_AnimeDetailFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/fragment_anime_detail" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/fragment_anime_detail"
         android:name="fr.sbelhadj.animeandroid.presentation.detail.AnimeDetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_anime_detail">
-
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/AnimeListFragment" />
