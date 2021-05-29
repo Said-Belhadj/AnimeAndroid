@@ -9,12 +9,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.sbelhadj.animeandroid.R
 import fr.sbelhadj.animeandroid.presentation.Singletons
 import fr.sbelhadj.animeandroid.presentation.api.AnimeDetailResponse
-import fr.sbelhadj.animeandroid.presentation.list.AnimeAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,9 +21,10 @@ import retrofit2.Response
  */
 class AnimeDetailFragment : Fragment() {
 
-    private lateinit var textViewName : TextView
+    private lateinit var textViewRank : TextView
+    private lateinit var textViewScore : TextView
+    private lateinit var textViewSynopsis : TextView
     private lateinit var imgView : ImageView
-    private lateinit var backButton : Button
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +36,9 @@ class AnimeDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textViewName = view.findViewById(R.id.rank)
+        textViewRank = view.findViewById(R.id.rank)
+        textViewScore = view.findViewById(R.id.score)
+        textViewSynopsis = view.findViewById(R.id.synopsis)
         callApi()
 
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
@@ -53,7 +54,9 @@ class AnimeDetailFragment : Fragment() {
 
             override fun onResponse(call: Call<AnimeDetailResponse>, response: Response<AnimeDetailResponse>) {
                 if(response.isSuccessful && response.body()!= null){
-                    textViewName.text = response.body()!!.rank.toString()
+                    textViewRank.text = response.body()!!.rank.toString()
+                    textViewScore.text = response.body()!!.score.toString()
+                    textViewSynopsis.text = response.body()!!.synopsis
                     imgView = view?.findViewById(R.id.anime_img)!!
                     Glide
                         .with(imgView)
