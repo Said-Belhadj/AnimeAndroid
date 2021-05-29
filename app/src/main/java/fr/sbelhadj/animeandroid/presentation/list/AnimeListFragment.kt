@@ -26,7 +26,6 @@ class AnimeListFragment : Fragment() {
     private val adapter = AnimeAdapter(listOf(), ::onClickedAnime)
 
     private val  layoutManager = LinearLayoutManager(context)
-    public val SHARED_PREFS = "sharedPrefs"
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

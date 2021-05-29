@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import fr.sbelhadj.animeandroid.R
 import fr.sbelhadj.animeandroid.presentation.Singletons
 import fr.sbelhadj.animeandroid.presentation.api.AnimeDetailResponse
+import fr.sbelhadj.animeandroid.presentation.list.AnimeAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +24,8 @@ import retrofit2.Response
 class AnimeDetailFragment : Fragment() {
 
     private lateinit var textViewName : TextView
+    private lateinit var imgView : ImageView
+    private lateinit var backButton : Button
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +37,12 @@ class AnimeDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         textViewName = view.findViewById(R.id.rank)
         callApi()
+
+        view.findViewById<Button>(R.id.back_button).setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
     }
 
     private fun callApi(){
@@ -43,6 +54,12 @@ class AnimeDetailFragment : Fragment() {
             override fun onResponse(call: Call<AnimeDetailResponse>, response: Response<AnimeDetailResponse>) {
                 if(response.isSuccessful && response.body()!= null){
                     textViewName.text = response.body()!!.rank.toString()
+                    imgView = view?.findViewById(R.id.anime_img)!!
+                    Glide
+                        .with(imgView)
+                        .load(response.body()!!.image_url)
+                        .into(imgView)
+
                 }
             }
 

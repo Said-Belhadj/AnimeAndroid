@@ -3,8 +3,10 @@ package fr.sbelhadj.animeandroid.presentation.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import fr.sbelhadj.animeandroid.R
 
 class AnimeAdapter(private var dataSet: List<Anime>, var listener: ((Anime) -> Unit)? = null) :
@@ -17,10 +19,11 @@ class AnimeAdapter(private var dataSet: List<Anime>, var listener: ((Anime) -> U
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
-
+        val imgView: ImageView
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.anime_title)
+            imgView = view.findViewById(R.id.anime_img)
         }
     }
 
@@ -48,6 +51,12 @@ class AnimeAdapter(private var dataSet: List<Anime>, var listener: ((Anime) -> U
         viewHolder.itemView.setOnClickListener {
             listener?.invoke(anime)
         }
+
+        Glide
+            .with(viewHolder.itemView.context)
+            .load(anime.image_url)
+            .into(viewHolder.imgView)
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
