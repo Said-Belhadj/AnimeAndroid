@@ -1,5 +1,5 @@
 # AnimeAndroid 🉐㊙️㊗️
-> Welcome to my Anime Application that displayed a list of Anime and their details 
+> Welcome to my Anime Application that displayed a list of Anime and their informations
 
 # Details 
 
@@ -17,9 +17,9 @@
 > Anime Android uses MVVM architecture with a Singleton for call API
 
 ## Screens 📲
-> ### List View of Top Animes ㊗️
-> ### Detailed view 🔎
-> ### Push Notification using Firebase (with sound 🔊) 🛎 
+> ###### List View of Top Animes ㊗️
+> ###### Detailed view 🔎
+> ###### Push Notification using Firebase (with sound 🔊) 🛎 
 >
 > <p float="left">
 >   <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/b7309893905712de51d6b11633131eaf51b667f2/img/detail-view.png" width="200" />
@@ -27,7 +27,6 @@
 >   <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/b7309893905712de51d6b11633131eaf51b667f2/img/notification.png" width="200" />
 > </p>
 
-###
-> Firebase Notification : 
+### Firebase Notification 🔔 : 
 > 
 > <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/85f4140cb6a8bdbc9d9fcb3a0b1a0aaae9cc228d/img/firebase.png"/>
