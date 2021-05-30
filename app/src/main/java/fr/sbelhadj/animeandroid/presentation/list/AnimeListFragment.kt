@@ -82,7 +82,7 @@ class AnimeListFragment : Fragment() {
         })
     }
 
-    private fun showList(animeList: List<Anime>) {
+    fun showList(animeList: List<Anime>) {
         adapter.updateList(animeList)
     }
 

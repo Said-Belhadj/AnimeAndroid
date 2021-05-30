@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.sbelhadj.animeandroid.R
 import fr.sbelhadj.animeandroid.presentation.Singletons
 import fr.sbelhadj.animeandroid.presentation.api.AnimeDetailResponse
@@ -24,6 +25,7 @@ class AnimeDetailFragment : Fragment() {
     private lateinit var textViewRank : TextView
     private lateinit var textViewScore : TextView
     private lateinit var textViewSynopsis : TextView
+    private var textViewEpisodes : TextView? = null
     private lateinit var imgView : ImageView
 
     override fun onCreateView(
@@ -39,9 +41,10 @@ class AnimeDetailFragment : Fragment() {
         textViewRank = view.findViewById(R.id.rank)
         textViewScore = view.findViewById(R.id.score)
         textViewSynopsis = view.findViewById(R.id.synopsis)
+        textViewEpisodes = view.findViewById(R.id.episodes)
         callApi()
 
-        view.findViewById<Button>(R.id.back_button).setOnClickListener {
+        view.findViewById<FloatingActionButton>(R.id.back_button).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }

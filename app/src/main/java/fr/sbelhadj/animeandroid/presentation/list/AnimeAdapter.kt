@@ -18,11 +18,15 @@ class AnimeAdapter(private var dataSet: List<Anime>, var listener: ((Anime) -> U
      * (custom ViewHolder).
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
+        val textViewTitle: TextView
+        val textViewEpisodes : TextView
+        val textViewRank : TextView
         val imgView: ImageView
         init {
             // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.anime_title)
+            textViewTitle = view.findViewById(R.id.anime_title)
+            textViewEpisodes = view.findViewById(R.id.episodes)
+            textViewRank = view.findViewById(R.id.rank)
             imgView = view.findViewById(R.id.anime_img)
         }
     }
@@ -47,7 +51,9 @@ class AnimeAdapter(private var dataSet: List<Anime>, var listener: ((Anime) -> U
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         val anime = dataSet[position]
-        viewHolder.textView.text = anime.title
+        viewHolder.textViewTitle.text = anime.title
+        viewHolder.textViewEpisodes.text = anime.episodes.toString()
+        viewHolder.textViewRank.text = anime.rank.toString()
         viewHolder.itemView.setOnClickListener {
             listener?.invoke(anime)
         }
