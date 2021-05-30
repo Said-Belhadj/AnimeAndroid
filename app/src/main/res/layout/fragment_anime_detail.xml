@@ -118,6 +118,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/anime_title"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:backgroundTint="#2d314c"
+        app:tint="#fff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="48dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

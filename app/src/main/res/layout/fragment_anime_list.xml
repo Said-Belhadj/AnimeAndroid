@@ -25,7 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-
     <TextView
         android:id="@+id/anime_error"
         android:layout_width="0dp"
