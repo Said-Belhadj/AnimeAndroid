@@ -11,7 +11,7 @@
 > <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kotlin_logo_2021.svg/2880px-Kotlin_logo_2021.svg.png" width="80" />
   
 ## API 
-> for informations : [Jikan API](https://jikan.docs.apiary.io/#reference/0/user)
+> for more informations : [Jikan API](https://jikan.docs.apiary.io/#reference/0/user)
 
 ## Architecture 
 > Anime Android uses MVVM architecture with a Singleton for call API
