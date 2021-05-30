@@ -24,9 +24,10 @@
 > <p float="left">
 >   <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/b7309893905712de51d6b11633131eaf51b667f2/img/detail-view.png" width="200" />
 >   <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/b7309893905712de51d6b11633131eaf51b667f2/img/list-view.png" width="200" />
->   <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/b7309893905712de51d6b11633131eaf51b667f2/img/notification.png" width="200" />
 > </p>
 
-### Firebase Notification 🔔 : 
-> 
-> <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/85f4140cb6a8bdbc9d9fcb3a0b1a0aaae9cc228d/img/firebase.png"/>
+### Firebase Notification 🔔 :
+> <p float="left">
+> <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/b7309893905712de51d6b11633131eaf51b667f2/img/notification.png" width="200" />
+> <img src="https://github.com/Said-Belhadj/AnimeAndroid/blob/85f4140cb6a8bdbc9d9fcb3a0b1a0aaae9cc228d/img/firebase.png" width="720"  />
+> </p>
