@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,9 +28,13 @@ import retrofit2.Response
 class AnimeListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView;
+    private lateinit var loader: ProgressBar;
+    private lateinit var error: TextView;
     private val adapter = AnimeAdapter(listOf(), ::onClickedAnime)
 
     private val  layoutManager = LinearLayoutManager(context)
+
+    private val viewModel: AnimeListViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -39,52 +48,22 @@ class AnimeListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.anime_recyclerview)
+        loader = view.findViewById(R.id.anime_loader)
+        error = view.findViewById(R.id.anime_error)
 
         recyclerView.apply {
             layoutManager = this@AnimeListFragment.layoutManager
             adapter = this@AnimeListFragment.adapter
         }
-        callApi()
-        /*val list = getListFromCache()
-        if (list.isEmpty()) {
-            callApi()
-        }else {
-            showList(list)
-        }*/
-
-    }
-
-    /*private fun getListFromCache(): List<Anime> {
-    }*/
-
-    /*private fun saveListIntoCache(animeList: List<Anime>) {
-
-    }*/
-
-
-    private fun callApi() {
-        Singletons.animeApi.getAnimeList().enqueue(object : Callback<AnimeListResponse> {
-            override fun onFailure(call: Call<AnimeListResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+        viewModel.animeList.observe(viewLifecycleOwner, Observer { animeModel ->
+            loader.isVisible = animeModel is AnimeLoader
+            error.isVisible = animeModel is AnimeError
+            if(animeModel is AnimeSuccess){
+                adapter.updateList(animeModel.animeList)
             }
-
-            override fun onResponse(
-                call: Call<AnimeListResponse>,
-                listResponse: Response<AnimeListResponse>
-            ) {
-                if (listResponse.isSuccessful && listResponse.body() != null) {
-                    val animeResponse = listResponse.body()!!
-                    //saveListIntoCache()
-                    showList(animeResponse.top)
-                }
-            }
-
         })
     }
 
-    fun showList(animeList: List<Anime>) {
-        adapter.updateList(animeList)
-    }
 
     private fun onClickedAnime(anime: Anime) {
         val bundle = bundleOf("animeId" to anime.mal_id)

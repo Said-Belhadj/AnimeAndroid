@@ -25,6 +25,7 @@ class AnimeDetailFragment : Fragment() {
     private lateinit var textViewRank : TextView
     private lateinit var textViewScore : TextView
     private lateinit var textViewSynopsis : TextView
+    private lateinit var textViewTitle : TextView
     private var textViewEpisodes : TextView? = null
     private lateinit var imgView : ImageView
 
@@ -40,6 +41,7 @@ class AnimeDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         textViewRank = view.findViewById(R.id.rank)
         textViewScore = view.findViewById(R.id.score)
+        textViewTitle = view.findViewById(R.id.anime_title)
         textViewSynopsis = view.findViewById(R.id.synopsis)
         textViewEpisodes = view.findViewById(R.id.episodes)
         callApi()
@@ -60,6 +62,7 @@ class AnimeDetailFragment : Fragment() {
                     textViewRank.text = response.body()!!.rank.toString()
                     textViewScore.text = response.body()!!.score.toString()
                     textViewSynopsis.text = response.body()!!.synopsis
+                    textViewTitle.text = response.body()!!.title
                     imgView = view?.findViewById(R.id.anime_img)!!
                     Glide
                         .with(imgView)
